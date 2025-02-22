@@ -5,7 +5,7 @@
 - [**TailwindCSS**](https://v3.tailwindcss.com/) – Utility-first styling for rapid UI development.
 - [**FontAwesome**](https://fontawesome.com/) – Icon library for a polished visual experience.
 
-## Design Goals 🎨
+## 🎨 Design Goals
 
 - **Minimalist & Responsive Design** – Optimized for all screen sizes with a clean, modern look.
 
