@@ -64,22 +64,19 @@
 
 	<!-- Right: Desktop Navigation -->
 	<nav class="hidden md:flex items-center gap-6">
-		<a href="/blog" class="text-white text-lg hover:opacity-80 transition-opacity">Blog</a>
-		<a href="/pricing" class="text-white text-lg hover:opacity-80 transition-opacity">Pricing</a>
+		<a href="/blog" class="nav-link">Blog</a>
+		<a href="/pricing" class="nav-link">Pricing</a>
 
 		<!-- Separator -->
 		<span class="text-white opacity-50">|</span>
 
-		<!-- Login & Sign Up Group -->
-		<div class="flex items-center gap-4">
-			<a href="/login" class="text-white text-lg hover:opacity-80 transition-opacity">Login</a>
-			<a
-				href="/signup"
-				class="px-6 py-2 bg-primary-800 hover:bg-secondary-600 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
-			>
-				Sign Up
-			</a>
-		</div>
+		<a href="/login" class="nav-link">Login</a>
+		<a
+			href="/signup"
+			class="px-6 py-2 mr-5 bg-primary-800 hover:bg-secondary-600 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
+		>
+			Sign Up
+		</a>
 	</nav>
 
 	<!-- Mobile Menu Button -->
@@ -109,21 +106,15 @@
 
 			<!-- Menu Links -->
 			<nav class="flex flex-col space-y-3 w-full">
-				<a
-					href="/blog"
-					class="w-full text-white text-lg hover:opacity-80 transition-opacity text-left">Blog</a
-				>
-				<a
-					href="/pricing"
-					class="w-full text-white text-lg hover:opacity-80 transition-opacity text-left">Pricing</a
-				>
+				<a href="/blog" class="nav-link">Blog</a>
+				<a href="/pricing" class="nav-link">Pricing</a>
 
 				<!-- Separator -->
 				<hr class="border-gray-700 w-full my-2" />
 
 				<!-- Login & Sign Up Group -->
 				<div class="flex flex-col space-y-2">
-					<a href="/login" class="text-white text-lg hover:opacity-80 transition-opacity">Login</a>
+					<a href="/login" class="nav-link">Login</a>
 					<a
 						href="/signup"
 						class="text-secondary-400 text-lg font-semibold hover:text-secondary-300 transition-opacity"
@@ -188,3 +179,9 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	a.nav-link {
+		@apply text-white text-lg hover:opacity-80 transition-opacity;
+	}
+</style>

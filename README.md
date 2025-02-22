@@ -1,39 +1,56 @@
-# create-svelte
+## 🚀 Tech Stack
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+- **SvelteKit** – Fast, flexible, and optimized for modern web applications.
+- **Skeleton UI** – A lightweight and elegant UI toolkit for Svelte.
+- **TailwindCSS** – Utility-first styling for rapid UI development.
+- **FontAwesome** – Icon library for a polished visual experience.
+
+## 🛠️ Getting Started
 
 ## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
-
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
 
-# create a new project in my-app
-npm create svelte@latest my-app
+npm create skeleton-app@latest my-skeleton-app
+- Enable Typescript when prompted (recommended)
+cd my-skeleton-app
+
 ```
 
-## Developing
+### 1️⃣ Installation
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Clone the repository and install dependencies:
+
+```bash
+npm install
+```
+
+### 2️⃣ Development
+
+Run the development server:
 
 ```bash
 npm run dev
+```
 
-# or start the server and open the app in a new browser tab
+Or start with automatic browser opening:
+
+```bash
 npm run dev -- --open
 ```
 
-## Building
+### 3️⃣ Building for Production
 
-To create a production version of your app:
+Generate an optimized build:
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-# company-profile-example
+```bash
+npm run preview
+```
+
+> **Note:** Ensure you configure an appropriate [SvelteKit adapter](https://kit.svelte.dev/docs/adapters) for deployment.
