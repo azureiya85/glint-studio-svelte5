@@ -1,9 +1,19 @@
 ## 🚀 Tech Stack
 
-- **SvelteKit** – Fast, flexible, and optimized for modern web applications.
-- **Skeleton UI** – A lightweight and elegant UI toolkit for Svelte.
-- **TailwindCSS** – Utility-first styling for rapid UI development.
-- **FontAwesome** – Icon library for a polished visual experience.
+- [**SvelteKit**](https://svelte.dev/) – Fast, flexible, and optimized for modern web applications.
+- [**Skeleton UI**](https://www.skeleton.dev/) – A lightweight and elegant UI toolkit for Svelte.
+- [**TailwindCSS**](https://v3.tailwindcss.com/) – Utility-first styling for rapid UI development.
+- [**FontAwesome**](https://fontawesome.com/) – Icon library for a polished visual experience.
+
+## Design Goals 🎨
+
+- **Minimalist & Responsive Design** – Optimized for all screen sizes with a clean, modern look.
+
+- **Smooth Transitions & Animations** – Subtle motion effects for a refined user experience.
+
+- **Mobile-Friendly Navigation** – Slide-in sidebar menu for easy access on smaller screens.
+
+- **Optimized Performance & SEO** – Fast loading times and SEO best practices applied.
 
 ## 🛠️ Getting Started
 
