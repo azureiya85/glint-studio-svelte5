@@ -9,6 +9,8 @@
 	import css from 'highlight.js/lib/languages/css';
 	import javascript from 'highlight.js/lib/languages/javascript';
 	import typescript from 'highlight.js/lib/languages/typescript';
+	import { initializeStores, Toast } from '@skeletonlabs/skeleton';
+	initializeStores();
 	import { library } from '@fortawesome/fontawesome-svg-core';
 	import { fas } from '@fortawesome/free-solid-svg-icons';
 	import { far } from '@fortawesome/free-regular-svg-icons';
@@ -26,5 +28,7 @@
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
+
+<Toast />
 
 <slot />

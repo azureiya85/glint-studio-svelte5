@@ -1,7 +1,47 @@
 <script lang="ts">
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	import type { ToastSettings, ToastStore } from '@skeletonlabs/skeleton';
+	const toastStore = getToastStore();
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { faPalette } from '@fortawesome/free-solid-svg-icons';
 	import { faGithub, faGoogle, faFacebook, faGitlab } from '@fortawesome/free-brands-svg-icons';
+	import { writable } from 'svelte/store';
+	import { goto } from '$app/navigation';
+
+	const loginfail: ToastSettings = {
+		message: 'Login failed. Please try again.',
+		background: 'variant-filled-error',
+		classes: 'rounded-base-token'
+	};
+
+	const loginsuccess: ToastSettings = {
+		message: 'Login success.',
+		background: 'bg-success-700',
+		classes: 'bg-success-700'
+	};
+
+	let username = writable('');
+	let password = writable('');
+	let isLoading = writable(false);
+
+	function handleLogin(event: Event) {
+		event.preventDefault();
+		const credentials = {
+			username: 'agus123',
+			password: 'handless'
+		};
+
+		if ($username === credentials.username && $password === credentials.password) {
+			toastStore.trigger(loginsuccess);
+			isLoading.set(true);
+			setTimeout(() => {
+				isLoading.set(false);
+				goto('/');
+			}, 2000);
+		} else {
+			toastStore.trigger(loginfail);
+		}
+	}
 </script>
 
 <svelte:head>
@@ -19,22 +59,19 @@
 
 	<main class="flex flex-1 items-center justify-center bg-primary-600 px-4 sm:px-6">
 		<div class="w-full max-w-md p-6 sm:p-8 rounded-lg flex flex-col items-center bg-primary-600">
-			<!-- Title section -->
 			<div class="text-center space-y-1">
 				<h1 class="text-2xl font-bold">Welcome to Designer</h1>
 				<p class="text-slate-200">Please sign in to your account</p>
 			</div>
 
-			<!-- Email login -->
-			<form class="w-full mt-6 space-y-4">
+			<form class="w-full mt-6 space-y-4" on:submit={handleLogin}>
 				<label class="block text-sm font-medium text-slate-200">
-					Email
+					Username
 					<input
-						id="email"
-						type="email"
-						name="email"
-						placeholder="Enter your email..."
+						type="text"
+						placeholder="Enter your username..."
 						class="input-field"
+						bind:value={$username}
 						required
 					/>
 				</label>
@@ -42,14 +79,17 @@
 				<label class="block text-sm font-medium text-slate-200">
 					Password
 					<input
-						id="password"
 						type="password"
-						name="password"
 						placeholder="Enter your password..."
 						class="input-field"
+						bind:value={$password}
 						required
 					/>
 				</label>
+
+				<button type="submit" class="social-button bg-secondary-600 hover:bg-secondary-700">
+					Login
+				</button>
 			</form>
 
 			<!-- Separator -->
@@ -57,16 +97,28 @@
 
 			<!-- Social login -->
 			<div class="mb-4 text-sm w-full space-y-2">
-				<button class="social-button bg-slate-700 hover:bg-slate-500">
+				<button
+					class="social-button bg-slate-700 hover:bg-slate-500"
+					on:click={() => (window.location.href = 'https://github.com')}
+				>
 					<FontAwesomeIcon icon={faGithub} class="icon" /> Continue with GitHub
 				</button>
-				<button class="social-button bg-[#FC6D26] hover:bg-orange-600">
+				<button
+					class="social-button bg-[#FC6D26] hover:bg-orange-600"
+					on:click={() => (window.location.href = 'https://gitlab.com')}
+				>
 					<FontAwesomeIcon icon={faGitlab} class="icon" /> Continue with GitLab
 				</button>
-				<button class="social-button bg-[#4285F4] hover:bg-blue-500">
+				<button
+					class="social-button bg-[#4285F4] hover:bg-blue-500"
+					on:click={() => (window.location.href = 'https://google.com')}
+				>
 					<FontAwesomeIcon icon={faGoogle} class="icon" /> Continue with Google
 				</button>
-				<button class="social-button bg-[#0A4DA2] hover:bg-[#083B7A]">
+				<button
+					class="social-button bg-[#0A4DA2] hover:bg-[#083B7A]"
+					on:click={() => (window.location.href = 'https://facebook.com')}
+				>
 					<FontAwesomeIcon icon={faFacebook} class="icon" /> Continue with Facebook
 				</button>
 			</div>

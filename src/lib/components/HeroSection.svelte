@@ -78,7 +78,7 @@
 
 		<a href="/login" class="nav-link">Login</a>
 		<a
-			href="/signup"
+			href="/login"
 			class="px-6 py-2 mr-5 bg-primary-800 hover:bg-secondary-600 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
 		>
 			Sign Up
@@ -123,7 +123,7 @@
 				<div class="flex flex-col space-y-2">
 					<a href="/login" class="nav-link">Login</a>
 					<a
-						href="/signup"
+						href="/login"
 						class="text-secondary-400 text-lg font-semibold hover:text-secondary-300 transition-opacity"
 					>
 						Sign Up
