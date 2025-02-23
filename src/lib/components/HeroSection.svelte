@@ -79,7 +79,7 @@
 		<a href="/login" class="nav-link">Login</a>
 		<a
 			href="/login"
-			class="px-6 py-2 mr-5 bg-primary-800 hover:bg-secondary-600 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
+			class="px-6 py-2 mr-5 bg-primary-800 border border-tertiary-900 hover:bg-secondary-600 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
 		>
 			Sign Up
 		</a>
@@ -168,20 +168,20 @@
 				About Us
 			</a>
 			<a
-				href="/team"
-				class="cta-button hover:bg-secondary-600"
-				in:fly={{ ...flyAnimation, delay: 600 }}
-			>
-				<FontAwesomeIcon icon={faUsers} class="w-5 h-5" />
-				Our Team
-			</a>
-			<a
 				href="/services"
-				class="cta-button hover:bg-tertiary-600"
+				class="cta-button-main bg-secondary-600 hover:bg-secondary-600"
 				in:fly={{ ...flyAnimation, delay: 800 }}
 			>
 				<FontAwesomeIcon icon={faCogs} class="w-5 h-5" />
 				Our Services
+			</a>
+			<a
+				href="/team"
+				class="cta-button hover:bg-tertiary-600"
+				in:fly={{ ...flyAnimation, delay: 600 }}
+			>
+				<FontAwesomeIcon icon={faUsers} class="w-5 h-5" />
+				Our Team
 			</a>
 		</div>
 	</div>
@@ -189,10 +189,14 @@
 
 <style>
 	a.nav-link {
-		@apply text-white text-lg hover:opacity-80 transition-opacity;
+		@apply text-primary-50 text-lg hover:text-secondary-400 transition-colors;
 	}
 
 	.cta-button {
-		@apply bg-primary-800 flex items-center gap-2 px-6 py-3 text-white rounded-3xl transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg;
+		@apply bg-primary-800 flex border-[1px] border-tertiary-900 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg;
+	}
+
+	.cta-button-main {
+		@apply bg-secondary-700 flex border-[1px] border-tertiary-500 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg;
 	}
 </style>
