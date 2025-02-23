@@ -50,6 +50,11 @@
 	const toggleMobileMenu = () => (mobileMenuOpen = !mobileMenuOpen);
 </script>
 
+<svelte:head>
+	<title>Home | Designer</title>
+	<meta name="description" content="Welcome to Desginer." />
+</svelte:head>
+
 <!-- ==== Header / Navbar ==== -->
 <header
 	class="fixed top-0 left-0 w-full px-10 py-6 flex justify-between items-center transition-all duration-300 z-[50]"
@@ -66,6 +71,7 @@
 	<nav class="hidden md:flex items-center gap-6">
 		<a href="/blog" class="nav-link">Blog</a>
 		<a href="/pricing" class="nav-link">Pricing</a>
+		<a href="/test" class="nav-link">Test</a>
 
 		<!-- Separator -->
 		<span class="text-white opacity-50">|</span>
@@ -108,6 +114,7 @@
 			<nav class="flex flex-col space-y-3 w-full">
 				<a href="/blog" class="nav-link">Blog</a>
 				<a href="/pricing" class="nav-link">Pricing</a>
+				<a href="/test" class="nav-link">Test</a>
 
 				<!-- Separator -->
 				<hr class="border-gray-700 w-full my-2" />
@@ -154,7 +161,7 @@
 		<div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
 			<a
 				href="/about"
-				class="flex items-center gap-2 bg-primary-800 hover:bg-primary-600 text-white px-6 py-3 rounded-3xl transition-transform transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-900"
+				class="cta-button hover:bg-primary-600"
 				in:fly={{ ...flyAnimation, delay: 400 }}
 			>
 				<FontAwesomeIcon icon={faInfoCircle} class="w-5 h-5" />
@@ -162,7 +169,7 @@
 			</a>
 			<a
 				href="/team"
-				class="flex items-center gap-2 bg-primary-800 hover:bg-secondary-600 text-white px-6 py-3 rounded-3xl transition-transform transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-900"
+				class="cta-button hover:bg-secondary-600"
 				in:fly={{ ...flyAnimation, delay: 600 }}
 			>
 				<FontAwesomeIcon icon={faUsers} class="w-5 h-5" />
@@ -170,7 +177,7 @@
 			</a>
 			<a
 				href="/services"
-				class="flex items-center gap-2 bg-primary-800 hover:bg-tertiary-600 text-white px-6 py-3 rounded-3xl transition-transform transform hover:-translate-y-1 hover:shadow-[0px_10px_30px_rgba(229,133,123,0.7)] hover:shadow-primary-900"
+				class="cta-button hover:bg-tertiary-600"
 				in:fly={{ ...flyAnimation, delay: 800 }}
 			>
 				<FontAwesomeIcon icon={faCogs} class="w-5 h-5" />
@@ -183,5 +190,9 @@
 <style>
 	a.nav-link {
 		@apply text-white text-lg hover:opacity-80 transition-opacity;
+	}
+
+	.cta-button {
+		@apply bg-primary-800 flex items-center gap-2 px-6 py-3 text-white rounded-3xl transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg;
 	}
 </style>

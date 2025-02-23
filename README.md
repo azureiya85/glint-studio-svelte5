@@ -63,4 +63,12 @@ Preview the production build:
 npm run preview
 ```
 
+### License
+
+This project is licensed under the MIT License.
+
+You are free to use, modify, and distribute this software, provided that you include the original license.
+
+See the [LICENSE](./LICENSE) file for more details.
+
 > **Note:** Ensure you configure an appropriate [SvelteKit adapter](https://kit.svelte.dev/docs/adapters) for deployment.
