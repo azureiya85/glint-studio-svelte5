@@ -134,7 +134,7 @@
 >
 	<!-- Optimized Background Image -->
 	<div
-		class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/your-image.jpg')] bg-cover bg-center"
+		class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/image/background_hero_4x.png')] bg-cover bg-center"
 	></div>
 
 	<!-- Hero Content -->
@@ -170,7 +170,7 @@
 			</a>
 			<a
 				href="/services"
-				class="flex items-center gap-2 bg-primary-800 hover:bg-tertiary-600 text-white px-6 py-3 rounded-3xl transition-transform transform hover:-translate-y-1 hover:shadow-2xlshadow-2xl hover:shadow-primary-900"
+				class="flex items-center gap-2 bg-primary-800 hover:bg-tertiary-600 text-white px-6 py-3 rounded-3xl transition-transform transform hover:-translate-y-1 hover:shadow-[0px_10px_30px_rgba(229,133,123,0.7)] hover:shadow-primary-900"
 				in:fly={{ ...flyAnimation, delay: 800 }}
 			>
 				<FontAwesomeIcon icon={faCogs} class="w-5 h-5" />
