@@ -1,6 +1,6 @@
 <script>
-	let numberInput = '';
-	let total = '';
+	let numberInput = $state('');
+	let total = $state('');
 
 	function calculate() {
 		try {
@@ -24,7 +24,7 @@
 	<input
 		type="text"
 		bind:value={numberInput}
-		on:input={calculate}
+		oninput={calculate}
 		placeholder="Enter equation..."
 	/>
 	<div class="result">{total}</div>

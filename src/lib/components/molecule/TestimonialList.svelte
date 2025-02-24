@@ -8,7 +8,7 @@
 <div class="flex justify-between items-center px-4">
 	<h2 class="text-xl font-semibold">Testimonials</h2>
 	<button
-		on:click={() => fetchTestimonials(3)}
+		onclick={() => fetchTestimonials(3)}
 		class="px-4 py-2 border rounded-lg text-primary border-primary hover:bg-primary hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
 		disabled={$loading}
 	>

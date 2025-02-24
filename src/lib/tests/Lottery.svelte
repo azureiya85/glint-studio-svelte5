@@ -1,6 +1,6 @@
 <script>
-	let lottery = 0;
-	let prize = '';
+	let lottery = $state(0);
+	let prize = $state('');
 
 	function drawLottery() {
 		const random = Math.floor(Math.random() * 100);
@@ -25,7 +25,7 @@
 
 <section>
 	<div class="flex flex-col items-center justify-center text-center">
-		<button class="draw-btn" on:click={drawLottery}>Draw Lottery</button>
+		<button class="draw-btn" onclick={drawLottery}>Draw Lottery</button>
 		<p>Lottery Number: {lottery}</p>
 		<p>Prize: {prize}</p>
 	</div>

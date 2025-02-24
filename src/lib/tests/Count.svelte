@@ -1,5 +1,5 @@
 <script>
-	let count = 0;
+	let count = $state(0);
 
 	function increment() {
 		count += 1;
@@ -14,8 +14,8 @@
 	<div class="flex flex-col justify-center items-center text-center mb-4">
 		<h1 class="font-bold mt-4">Count: {count}</h1>
 		<div class="flex gap-4 mt-4">
-			<button class="count-btn" on:click={increment}>Increment</button>
-			<button class="count-btn" on:click={decrement}>Decrement</button>
+			<button class="count-btn" onclick={increment}>Increment</button>
+			<button class="count-btn" onclick={decrement}>Decrement</button>
 		</div>
 	</div>
 </section>

@@ -43,7 +43,7 @@
 	}
 </script>
 
-<form class="w-full mt-6 space-y-4" on:submit={handleLogin}>
+<form class="w-full mt-6 space-y-4" onsubmit={handleLogin}>
 	<label class="block text-sm font-medium text-slate-200">
 		Username
 		<input

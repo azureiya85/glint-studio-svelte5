@@ -4,8 +4,8 @@
 	import { faPalette, faBars } from '@fortawesome/free-solid-svg-icons';
 	import MobileMenu from './MobileMenu.svelte';
 
-	let scrolled = false;
-	let mobileMenuOpen = false;
+	let scrolled = $state(false);
+	let mobileMenuOpen = $state(false);
 
 	const toggleMobileMenu = () => (mobileMenuOpen = !mobileMenuOpen);
 
@@ -42,7 +42,7 @@
 		</a>
 	</nav>
 
-	<button class="md:hidden text-white text-2xl" on:click={toggleMobileMenu}>
+	<button class="md:hidden text-white text-2xl" onclick={toggleMobileMenu}>
 		<FontAwesomeIcon icon={faBars} />
 	</button>
 

@@ -14,7 +14,7 @@
 		}
 	];
 
-	let isVisible = false;
+	let isVisible = $state(false);
 
 	setTimeout(() => {
 		isVisible = true;
@@ -30,7 +30,7 @@
 		<button
 			class="social-button"
 			style="background: {color}"
-			on:click={() => (window.location.href = url)}
+			onclick={() => (window.location.href = url)}
 		>
 			<FontAwesomeIcon {icon} class="icon" />
 			{text}
