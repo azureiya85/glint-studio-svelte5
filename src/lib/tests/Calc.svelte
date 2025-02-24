@@ -39,13 +39,14 @@
 	}
 
 	input {
+		background: #1e293b;
 		width: 100%;
+		box-shadow: 0 0 0 1px #7c70a0;
 		padding: 10px;
 		font-size: 18px;
 		color: black;
 		text-align: center;
-		border: 1px solid #ccc;
-		border-radius: 5px;
+		border-radius: 999px;
 		outline: none;
 	}
 
@@ -53,6 +54,6 @@
 		margin-top: 10px;
 		font-size: 24px;
 		font-weight: bold;
-		color: #333;
+		color: white;
 	}
 </style>
