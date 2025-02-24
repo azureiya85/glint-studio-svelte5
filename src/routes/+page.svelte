@@ -1,7 +1,7 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script>
 	import { onMount } from 'svelte';
-	import HeroSection from '$lib/components/HeroSection.svelte';
+	import HeroSection from '$lib/components/cell/HeroSection.svelte';
 
 	let showHero = false;
 

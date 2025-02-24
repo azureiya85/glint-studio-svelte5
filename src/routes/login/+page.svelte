@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
-	import Footer from '$lib/components/Footer.svelte';
-	import LoginForm from '$lib/components/LoginForm.svelte';
-	import SocialLogin from '$lib/components/SocialLogin.svelte';
+	import Header from '$lib/components/atom/Header.svelte';
+	import Footer from '$lib/components/atom/Footer.svelte';
+	import LoginForm from '$lib/components/molecule/LoginForm.svelte';
+	import SocialLogin from '$lib/components/molecule/SocialLogin.svelte';
 </script>
 
 <svelte:head>

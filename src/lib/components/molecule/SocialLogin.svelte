@@ -16,7 +16,6 @@
 
 	let isVisible = false;
 
-	// Ensure transition happens after the component is mounted
 	setTimeout(() => {
 		isVisible = true;
 	}, 100);
@@ -60,5 +59,6 @@
 	.social-button:hover {
 		transform: translateY(-2px);
 		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+		filter: brightness(1.2);
 	}
 </style>
