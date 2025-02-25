@@ -3,79 +3,94 @@
 	import { fly } from 'svelte/transition';
 	import { testimonials, fetchTestimonials } from '$lib/components/nerve/TestimonialData';
 
-	onMount(() => fetchTestimonials(6));
-
-	let scrollingElement: HTMLElement | null = null;
-
-	function stopScroll() {
-		if (scrollingElement) {
-			scrollingElement.style.animationPlayState = 'paused';
-		}
-	}
-
-	function startScroll() {
-		if (scrollingElement) {
-			scrollingElement.style.animationPlayState = 'running';
-		}
-	}
-
 	onMount(() => {
-		scrollingElement = document.querySelector('.animate-scroll');
+		fetchTestimonials(6);
+
+		const scrollingElement = document.querySelector<HTMLElement>('.animate-scroll');
+		if (scrollingElement) {
+			scrollingElement.addEventListener(
+				'mouseenter',
+				() => (scrollingElement.style.animationPlayState = 'paused')
+			);
+			scrollingElement.addEventListener(
+				'mouseleave',
+				() => (scrollingElement.style.animationPlayState = 'running')
+			);
+		}
 	});
 </script>
 
-<section aria-labelledby="testimonial-list">
-	<div class="relative min-h-screen flex items-center justify-center py-16 px-12">
+<section aria-labelledby="testimonial-heading">
+	<div class="relative min-h-screen flex flex-col items-center justify-center py-8 px-4 md:px-16">
 		<!-- Background Image with Blur -->
 		<div
 			class="absolute inset-0 bg-[url('/image/background_hero_4x.png')] bg-cover bg-center before:absolute before:inset-0 before:bg-primary-800/50 before:backdrop-blur-lg"
+			role="presentation"
 		></div>
 
 		<!-- Main Content Box -->
 		<div
-			class="border border-tertiary-600 rounded-[64px] relative z-10 grid grid-cols-2 gap-4 bg-primary-900 px-8 py-8 mb-12"
+			class="relative z-10 flex flex-col md:flex-row gap-8 bg-primary-900 px-8 py-12 border border-tertiary-600 rounded-[32px] md:rounded-[64px] w-full max-w-full md:max-w-6xl md:mx-16"
 		>
 			<!-- Text Section -->
-			<div class="flex flex-col px-4 justify-center text-left">
-				<h2 class="leading-[0,2] font-heading-token text-6xl font-semibold mb-4">
-					What our <span class="text-secondary-600"> customers</span> <br /> says about us
+			<div class="flex flex-col text-left w-full md:w-1/2">
+				<h2
+					id="testimonial-heading"
+					class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-center md:text-left"
+				>
+					What our <span class="text-secondary-600">customers</span> say about us
 				</h2>
-				<p class="text-lg font-normal">
-					Our team is trusted by millions of clients across continents.
+				<p class="text-lg md:text-2xl font-normal text-center md:text-left">
+					With over 500,000 successful projects, we help businesses—big and small—enhance their
+					digital presence through thoughtful design solutions. Our team delivers user-friendly,
+					data-driven designs tailored to each client's needs, ensuring high standards of
+					creativity, functionality, and user experience.
 				</p>
 			</div>
 
 			<!-- Scrolling Testimonials -->
-			<div class="relative h-[75vh] overflow-hidden p-4 fade-mask">
-				<div
-					role="presentation"
-					class="animate-scroll flex flex-col gap-4"
-					onmouseenter={() => stopScroll()}
-					onmouseleave={() => startScroll()}
-				>
+			<div class="relative h-[50vh] md:h-[75vh] overflow-hidden p-4 fade-mask w-full md:w-1/2">
+				<div class="animate-scroll flex flex-col gap-4">
 					{#each [...$testimonials, ...$testimonials] as testimonial, i (testimonial.id + '-' + i)}
-						<div
+						<article
 							class="p-4 bg-secondary-600 dark:bg-primary-600 rounded-full shadow-2xl border border-tertiary-700 scale-90"
 							in:fly={{ y: 20, opacity: 0, duration: 500, delay: i * 150 }}
 						>
 							<div class="flex flex-row-reverse items-center gap-4">
 								<img
-									class="w-16 h-16 rounded-full border border-primary shadow"
+									class="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary shadow"
 									src={testimonial.image}
-									alt="User"
+									alt={`Profile picture of ${testimonial.name}`}
 								/>
 								<div class="text-left pl-4">
-									<h3 class="text-sm">
-										<span class="font-medium">{testimonial.name} </span>
-										<span class="px-2">|</span>
-										<span class="font-normalt"> {testimonial.location} </span>
+									<h3 class="text-sm md:text-base font-medium">
+										{testimonial.name} <span class="px-2">|</span>
+										<span class="font-normal">{testimonial.location}</span>
 									</h3>
-									<p class="text-lg font-bold mt-1">"{testimonial.message}"</p>
+									<p class="text-base md:text-lg font-bold mt-1">"{testimonial.message}"</p>
 								</div>
 							</div>
-						</div>
+						</article>
 					{/each}
 				</div>
+			</div>
+		</div>
+
+		<!-- Stats Section -->
+		<div
+			class="relative z-10 w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12 text-center mt-12 md:mt-16 px-4 md:px-0"
+		>
+			<div>
+				<p class="text-3xl md:text-5xl font-bold">500k+</p>
+				<p class="text-base md:text-lg font-medium">PROJECTS</p>
+			</div>
+			<div>
+				<p class="text-3xl md:text-5xl font-bold">100k+</p>
+				<p class="text-base md:text-lg font-medium">CLIENTS</p>
+			</div>
+			<div>
+				<p class="text-3xl md:text-5xl font-bold">70+</p>
+				<p class="text-base md:text-lg font-medium">COUNTRIES</p>
 			</div>
 		</div>
 	</div>
