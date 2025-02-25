@@ -72,6 +72,11 @@
 	>
 		Login
 	</button>
+	<p class="text-center">
+		Don't have an account? <span class="font-medium text-secondary-600 underline"
+			>Register Now!</span
+		>
+	</p>
 </form>
 
 <style>
