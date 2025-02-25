@@ -31,7 +31,7 @@
 	<nav class="hidden md:flex items-center gap-6">
 		<a href="/blog" class="nav-link">Blog</a>
 		<a href="/pricing" class="nav-link">Pricing</a>
-		<a href="/test" class="nav-link">Test</a>
+		<a href="/protected/test" class="nav-link">Test</a>
 		<span class="text-white opacity-50">|</span>
 		<a href="/login" class="nav-link">Login</a>
 		<a

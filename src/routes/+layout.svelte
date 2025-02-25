@@ -15,7 +15,6 @@
 	import { fas } from '@fortawesome/free-solid-svg-icons';
 	import { far } from '@fortawesome/free-regular-svg-icons';
 	import { fab } from '@fortawesome/free-brands-svg-icons';
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	library.add(fas, far, fab);
 	hljs.registerLanguage('xml', xml); // for HTML
 	hljs.registerLanguage('css', css);
@@ -23,6 +22,12 @@
 	hljs.registerLanguage('typescript', typescript);
 	storeHighlightJs.set(hljs);
 
+	import type { Cookies } from '@sveltejs/kit';
+
+	export function load({ cookies }: { cookies: Cookies }) {
+		const auth = cookies.get('auth');
+		return { user: auth ? JSON.parse(auth) : null };
+	}
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';

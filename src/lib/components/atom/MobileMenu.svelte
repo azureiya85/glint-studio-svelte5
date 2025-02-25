@@ -21,7 +21,7 @@
 		<nav class="flex flex-col space-y-3 w-full">
 			<a href="/blog" class="nav-link">Blog</a>
 			<a href="/pricing" class="nav-link">Pricing</a>
-			<a href="/test" class="nav-link">Test</a>
+			<a href="/protected/test" class="nav-link">Test</a>
 			<hr class="border-gray-700 w-full my-2" />
 			<div class="flex flex-col space-y-2">
 				<a href="/login" class="nav-link">Login</a>

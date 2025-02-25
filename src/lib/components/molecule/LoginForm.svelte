@@ -25,18 +25,20 @@
 	async function handleLogin(event: Event) {
 		event.preventDefault();
 
-		const credentials = {
-			username: 'agus123',
-			password: 'handless'
-		};
+		isLoading.set(true);
 
-		if ($username === credentials.username && $password === credentials.password) {
+		const response = await fetch('/api/login', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ username: $username, password: $password })
+		});
+
+		const result = await response.json();
+		isLoading.set(false);
+
+		if (result.success) {
 			toastStore.trigger(loginSuccess);
-			isLoading.set(true);
-			setTimeout(() => {
-				isLoading.set(false);
-				goto('/');
-			}, 2000);
+			goto('/');
 		} else {
 			toastStore.trigger(loginFail);
 		}
@@ -77,6 +79,14 @@
 			>Register Now!</span
 		>
 	</p>
+	<button
+		onclick={async () => {
+			await fetch('/api/logout', { method: 'POST' });
+			goto('/login');
+		}}
+	>
+		Logout
+	</button>
 </form>
 
 <style>
