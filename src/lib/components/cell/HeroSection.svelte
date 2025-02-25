@@ -44,16 +44,38 @@
 		<p class="mt-4 text-lg sm:text-xl leading-relaxed" in:fly={{ ...flyAnimation, delay: 200 }}>
 			We help people to create a more responsive, adaptive, and accessible web experience.
 		</p>
+		<!-- CTA Buttons -->
 		<div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-			<a href="/about" class="cta-button" in:fly={{ ...flyAnimation, delay: 400 }}>
-				<FontAwesomeIcon icon={faInfoCircle} class="w-5 h-5" /> About Us
+			<a
+				href="/about"
+				class="cta-button hover:bg-primary-500"
+				in:fly={{ ...flyAnimation, delay: 400 }}
+			>
+				<FontAwesomeIcon icon={faInfoCircle} class="w-5 h-5" />
+				About Us
 			</a>
 			<a href="/services" class="cta-button-main" in:fly={{ ...flyAnimation, delay: 800 }}>
-				<FontAwesomeIcon icon={faCogs} class="w-5 h-5" /> Our Services
+				<FontAwesomeIcon icon={faCogs} class="w-5 h-5" />
+				Our Services
 			</a>
-			<a href="/team" class="cta-button" in:fly={{ ...flyAnimation, delay: 600 }}>
-				<FontAwesomeIcon icon={faUsers} class="w-5 h-5" /> Our Team
+			<a
+				href="/team"
+				class="cta-button hover:bg-tertiary-600"
+				in:fly={{ ...flyAnimation, delay: 600 }}
+			>
+				<FontAwesomeIcon icon={faUsers} class="w-5 h-5" />
+				Our Team
 			</a>
 		</div>
 	</div>
 </section>
+
+<style>
+	.cta-button {
+		@apply bg-primary-800 flex border-[1px] border-tertiary-900 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg;
+	}
+
+	.cta-button-main {
+		@apply bg-secondary-700 flex border-[1px] border-tertiary-500 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-transform transform hover:-translate-y-1 shadow-md hover:shadow-lg;
+	}
+</style>

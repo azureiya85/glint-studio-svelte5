@@ -2,6 +2,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import HeroSection from '$lib/components/cell/HeroSection.svelte';
+	import TestimonialList from '$lib/components/cell/TestimonialList.svelte';
 
 	let showHero = $state(false);
 
@@ -12,4 +13,5 @@
 
 {#if showHero}
 	<HeroSection />
+	<TestimonialList />
 {/if}
