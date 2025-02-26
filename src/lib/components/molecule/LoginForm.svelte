@@ -1,40 +1,36 @@
 <script lang="ts">
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings } from '@skeletonlabs/skeleton';
-	import { writable } from 'svelte/store';
 	import { goto } from '$app/navigation';
+	import { authStore } from '$lib/stores/auth';
 
+	// Create state for form fields
+	let username = $state('');
+	let password = $state('');
+	let isLoading = $state(false);
+
+	// Get toast store for notifications
 	const toastStore = getToastStore();
 
+	// Toast notifications
 	const loginFail: ToastSettings = {
 		message: 'Login failed. Please try again.',
-		background: 'variant-filled-error',
-		classes: 'rounded-base-token'
+		background: 'variant-filled-error'
 	};
 
 	const loginSuccess: ToastSettings = {
 		message: 'Login successful!',
-		background: 'bg-success-700',
-		classes: 'bg-success-700'
+		background: 'bg-success-700'
 	};
 
-	let username = writable('');
-	let password = writable('');
-	let isLoading = writable(false);
-
+	// Handle login form submission
 	async function handleLogin(event: Event) {
 		event.preventDefault();
+		isLoading = true;
 
-		isLoading.set(true);
+		const result = await authStore.login(username, password);
 
-		const response = await fetch('/api/login', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ username: $username, password: $password })
-		});
-
-		const result = await response.json();
-		isLoading.set(false);
+		isLoading = false;
 
 		if (result.success) {
 			toastStore.trigger(loginSuccess);
@@ -42,6 +38,12 @@
 		} else {
 			toastStore.trigger(loginFail);
 		}
+	}
+
+	// Handle logout
+	async function handleLogout() {
+		await authStore.logout();
+		goto('/login');
 	}
 </script>
 
@@ -52,7 +54,7 @@
 			type="text"
 			placeholder="Enter your username..."
 			class="input-field"
-			bind:value={$username}
+			bind:value={username}
 			required
 		/>
 	</label>
@@ -63,7 +65,7 @@
 			type="password"
 			placeholder="Enter your password..."
 			class="input-field"
-			bind:value={$password}
+			bind:value={password}
 			required
 		/>
 	</label>
@@ -71,19 +73,21 @@
 	<button
 		type="submit"
 		class="w-full rounded-full social-button bg-secondary-700 hover:bg-secondary-800 h-12 border border-tertiary-800"
+		disabled={isLoading}
 	>
-		Login
+		{isLoading ? 'Logging in...' : 'Login'}
 	</button>
+
 	<p class="text-center">
 		Don't have an account? <span class="font-medium text-secondary-600 underline"
 			>Register Now!</span
 		>
 	</p>
+
 	<button
-		onclick={async () => {
-			await fetch('/api/logout', { method: 'POST' });
-			goto('/login');
-		}}
+		type="button"
+		class="w-full rounded-full social-button bg-primary-800 hover:bg-primary-900 h-12 border border-tertiary-800"
+		onclick={handleLogout}
 	>
 		Logout
 	</button>

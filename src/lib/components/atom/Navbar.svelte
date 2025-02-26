@@ -3,16 +3,32 @@
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { faPalette, faBars } from '@fortawesome/free-solid-svg-icons';
 	import MobileMenu from './MobileMenu.svelte';
+	import { authStore } from '$lib/stores/auth';
 
+	// Use $state to track UI state
 	let scrolled = $state(false);
 	let mobileMenuOpen = $state(false);
 
-	const toggleMobileMenu = () => (mobileMenuOpen = !mobileMenuOpen);
+	// Use $derived to automatically update when auth state changes
+	// This will reactively update the navbar when user logs in or out
+	let isAuthenticated = $derived(!!$authStore);
 
+	// Toggle mobile menu
+	function toggleMobileMenu() {
+		mobileMenuOpen = !mobileMenuOpen;
+	}
+
+	// Handle logout
+	async function handleLogout() {
+		await authStore.logout();
+	}
+
+	// Handle scroll events
 	onMount(() => {
 		const handleScroll = () => {
 			scrolled = window.scrollY > 50;
 		};
+
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
@@ -33,13 +49,26 @@
 		<a href="/pricing" class="nav-link">Pricing</a>
 		<a href="/protected/test" class="nav-link">Test</a>
 		<span class="text-white opacity-50">|</span>
-		<a href="/login" class="nav-link">Login</a>
-		<a
-			href="/login"
-			class="px-6 py-2 mr-5 bg-primary-800 border border-tertiary-900 hover:bg-secondary-600 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
-		>
-			Sign Up
-		</a>
+
+		{#if isAuthenticated}
+			<!-- Show these links when user is logged in -->
+			<span class="nav-link">Hello, {$authStore?.username}</span>
+			<button
+				onclick={handleLogout}
+				class="px-6 py-2 mr-5 bg-primary-800 border border-tertiary-900 hover:bg-primary-700 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
+			>
+				Sign Out
+			</button>
+		{:else}
+			<!-- Show these links when user is logged out -->
+			<a href="/login" class="nav-link">Login</a>
+			<a
+				href="/register"
+				class="px-6 py-2 mr-5 bg-primary-800 border border-tertiary-900 hover:bg-secondary-600 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
+			>
+				Sign Up
+			</a>
+		{/if}
 	</nav>
 
 	<button class="md:hidden text-white text-2xl" onclick={toggleMobileMenu}>

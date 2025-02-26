@@ -1,8 +1,19 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
+	import { authStore } from '$lib/stores/auth';
 
 	const dispatch = createEventDispatcher();
+
+	// Use $derived to automatically update when auth state changes
+	// This will reactively update the menu when user logs in or out
+	let isAuthenticated = $derived(!!$authStore);
+
+	// Handle logout
+	async function handleLogout() {
+		await authStore.logout();
+		dispatch('close');
+	}
 </script>
 
 <div
@@ -23,15 +34,32 @@
 			<a href="/pricing" class="nav-link">Pricing</a>
 			<a href="/protected/test" class="nav-link">Test</a>
 			<hr class="border-gray-700 w-full my-2" />
-			<div class="flex flex-col space-y-2">
+
+			{#if isAuthenticated}
+				<!-- Show these links when user is logged in -->
+				<span class="text-white text-lg">Hello, {$authStore?.username}</span>
+				<button
+					onclick={handleLogout}
+					class="text-primary-300 text-lg font-semibold hover:text-primary-200 transition-colors"
+				>
+					Sign Out
+				</button>
+			{:else}
+				<!-- Show these links when user is logged out -->
 				<a href="/login" class="nav-link">Login</a>
 				<a
-					href="/login"
-					class="text-secondary-400 text-lg font-semibold hover:text-secondary-300 transition-opacity"
+					href="/register"
+					class="text-secondary-400 text-lg font-semibold hover:text-secondary-300 transition-colors"
 				>
 					Sign Up
 				</a>
-			</div>
+			{/if}
 		</nav>
 	</div>
 </div>
+
+<style>
+	.nav-link {
+		@apply text-white text-lg hover:text-secondary-400 transition-colors;
+	}
+</style>

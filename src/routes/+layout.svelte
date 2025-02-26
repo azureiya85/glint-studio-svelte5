@@ -1,42 +1,48 @@
 <script lang="ts">
-	import '../app.postcss';
+  import '../app.postcss';
+  import { onMount } from 'svelte';
+  import { authStore } from '$lib/stores/auth';
+  import { page } from '$app/stores';
 
-	// Highlight JS
-	import hljs from 'highlight.js/lib/core';
-	import 'highlight.js/styles/github-dark.css';
-	import { storeHighlightJs } from '@skeletonlabs/skeleton';
-	import xml from 'highlight.js/lib/languages/xml'; // for HTML
-	import css from 'highlight.js/lib/languages/css';
-	import javascript from 'highlight.js/lib/languages/javascript';
-	import typescript from 'highlight.js/lib/languages/typescript';
-	import { initializeStores, Toast } from '@skeletonlabs/skeleton';
-	initializeStores();
-	import { library } from '@fortawesome/fontawesome-svg-core';
-	import { fas } from '@fortawesome/free-solid-svg-icons';
-	import { far } from '@fortawesome/free-regular-svg-icons';
-	import { fab } from '@fortawesome/free-brands-svg-icons';
-	library.add(fas, far, fab);
-	hljs.registerLanguage('xml', xml); // for HTML
-	hljs.registerLanguage('css', css);
-	hljs.registerLanguage('javascript', javascript);
-	hljs.registerLanguage('typescript', typescript);
-	storeHighlightJs.set(hljs);
+  // Import Skeleton components
+  import { Toast, initializeStores } from '@skeletonlabs/skeleton';
+  initializeStores();
 
-	import type { Cookies } from '@sveltejs/kit';
+  // Initialize FontAwesome
+  import { library } from '@fortawesome/fontawesome-svg-core';
+  import { fas } from '@fortawesome/free-solid-svg-icons';
+  import { far } from '@fortawesome/free-regular-svg-icons';
+  import { fab } from '@fortawesome/free-brands-svg-icons';
+  library.add(fas, far, fab);
 
-	export function load({ cookies }: { cookies: Cookies }) {
-		const auth = cookies.get('auth');
-		return { user: auth ? JSON.parse(auth) : null };
-	}
-	// Floating UI for Popups
-	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
-	import { storePopup } from '@skeletonlabs/skeleton';
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
+  // Initialize Highlight.js
+  import hljs from 'highlight.js/lib/core';
+  import 'highlight.js/styles/github-dark.css';
+  import { storeHighlightJs } from '@skeletonlabs/skeleton';
+  import xml from 'highlight.js/lib/languages/xml';
+  import css from 'highlight.js/lib/languages/css';
+  import javascript from 'highlight.js/lib/languages/javascript';
+  import typescript from 'highlight.js/lib/languages/typescript';
 
-	let { children }: Props = $props();
-	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+  hljs.registerLanguage('xml', xml);
+  hljs.registerLanguage('css', css);
+  hljs.registerLanguage('javascript', javascript);
+  hljs.registerLanguage('typescript', typescript);
+  storeHighlightJs.set(hljs);
+
+  // Floating UI for Popups
+  import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
+  import { storePopup } from '@skeletonlabs/skeleton';
+  storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+  // Use the Svelte 5 $props rune
+  let { children } = $props();
+
+  // Initialize auth store with user data from the server
+  onMount(() => {
+    // Initialize auth store with data from the server
+    authStore.initialize($page.data.user);
+  });
 </script>
 
 <Toast />
