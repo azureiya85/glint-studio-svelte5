@@ -40,7 +40,7 @@
 				<span class="text-white text-lg">Hello, {$authStore?.username}</span>
 				<button
 					onclick={handleLogout}
-					class="text-primary-300 text-lg font-semibold hover:text-primary-200 transition-colors"
+					class="text-primary-300 text-left text-lg font-semibold hover:text-primary-200 transition-colors"
 				>
 					Sign Out
 				</button>
