@@ -79,9 +79,8 @@
 	</button>
 
 	<p class="text-center">
-		Don't have an account? <span class="font-medium text-secondary-600 underline"
-			>Register Now!</span
-		>
+		Don't have an account?
+		<a href="/register" class="font-medium text-secondary-600 underline"> Register Now! </a>
 	</p>
 
 	<button
