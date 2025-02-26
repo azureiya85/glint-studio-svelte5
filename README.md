@@ -3,7 +3,7 @@
 - [**SvelteKit**](https://svelte.dev/) – Fast, flexible, and optimized for modern web applications.
 - [**Skeleton UI**](https://www.skeleton.dev/) – A lightweight and elegant UI toolkit for Svelte.
 - [**TailwindCSS**](https://v3.tailwindcss.com/) – Utility-first styling for rapid UI development.
-- [**Iconify for Svelte**]([https://iconify.design/docs/icon-components/svelte/) – Icon library for a polished visual experience, Svelte version.
+- [**Iconify for Svelte**](https://iconify.design/docs/icon-components/svelte/) – Icon library for a polished visual experience, Svelte version.
 
 ## 🎨 Design Goals
 
