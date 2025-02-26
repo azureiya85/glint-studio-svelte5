@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
 	import { onMount, tick } from 'svelte';
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-	import { faInfoCircle, faUsers, faCogs } from '@fortawesome/free-solid-svg-icons';
+	import Icon from '@iconify/svelte';
+
 	import Navbar from '$lib/components/atom/Navbar.svelte';
 
 	let visible = false;
@@ -51,11 +51,11 @@
 				class="cta-button hover:bg-primary-500"
 				in:fly={{ ...flyAnimation, delay: 400 }}
 			>
-				<FontAwesomeIcon icon={faInfoCircle} class="w-5 h-5" />
+				<Icon icon="mdi-light:home" class="text-primary-100 w-5 h-5" />
 				About Us
 			</a>
 			<a href="/services" class="cta-button-main" in:fly={{ ...flyAnimation, delay: 800 }}>
-				<FontAwesomeIcon icon={faCogs} class="w-5 h-5" />
+				<Icon icon="mdi-light:home" class="text-primary-100 w-5 h-5" />
 				Our Services
 			</a>
 			<a
@@ -63,7 +63,7 @@
 				class="cta-button hover:bg-tertiary-600"
 				in:fly={{ ...flyAnimation, delay: 600 }}
 			>
-				<FontAwesomeIcon icon={faUsers} class="w-5 h-5" />
+				<Icon icon="mdi-light:home" class="text-primary-100  w-5 h-5" />
 				Our Team
 			</a>
 		</div>

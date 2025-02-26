@@ -1,13 +1,27 @@
 <script lang="ts">
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-	import { faGithub, faGoogle, faFacebook, faGitlab } from '@fortawesome/free-brands-svg-icons';
+	import Icon from '@iconify/svelte';
 
 	const socialLinks = [
-		{ icon: faGithub, text: 'Continue with GitHub', url: 'https://github.com', color: '#5A5D72' },
-		{ icon: faGitlab, text: 'Continue with GitLab', url: 'https://gitlab.com', color: '#E07B50' },
-		{ icon: faGoogle, text: 'Continue with Google', url: 'https://google.com', color: '#8A9FD1' },
 		{
-			icon: faFacebook,
+			icon: 'mdi:github',
+			text: 'Continue with GitHub',
+			url: 'https://github.com',
+			color: '#5A5D72'
+		},
+		{
+			icon: 'mdi:gitlab',
+			text: 'Continue with GitLab',
+			url: 'https://gitlab.com',
+			color: '#E07B50'
+		},
+		{
+			icon: 'mdi:google',
+			text: 'Continue with Google',
+			url: 'https://google.com',
+			color: '#8A9FD1'
+		},
+		{
+			icon: 'mdi:facebook',
 			text: 'Continue with Facebook',
 			url: 'https://facebook.com',
 			color: '#56709C'
@@ -32,7 +46,7 @@
 			style="background: {color}"
 			onclick={() => (window.location.href = url)}
 		>
-			<FontAwesomeIcon {icon} class="icon" />
+			<Icon {icon} class="icon" />
 			{text}
 		</button>
 	{/each}
@@ -61,4 +75,8 @@
 		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 		filter: brightness(1.2);
 	}
+
+	/* .icon { */
+	/* 	font-size: 1.5rem; */
+	/* } */
 </style>
