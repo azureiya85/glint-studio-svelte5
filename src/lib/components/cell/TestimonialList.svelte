@@ -24,13 +24,13 @@
 	<div class="relative min-h-screen flex flex-col items-center justify-center py-8 px-4 md:px-16">
 		<!-- Background Image with Blur -->
 		<div
-			class="absolute inset-0 bg-[url('/image/background_hero_4x.png')] bg-cover bg-center before:absolute before:inset-0 before:bg-primary-800/50 before:backdrop-blur-lg"
+			class="absolute inset-0 bg-[url('/image/image_testimony.png')] bg-cover bg-center before:absolute before:inset-0 before:bg-primary-800/50 before:backdrop-blur-lg"
 			role="presentation"
 		></div>
 
 		<!-- Main Content Box -->
 		<div
-			class="relative z-10 flex flex-col md:flex-row gap-8 bg-primary-900 px-8 py-12 border border-tertiary-600 rounded-[32px] md:rounded-[64px] w-full max-w-full md:max-w-6xl md:mx-16"
+			class="relative z-10 flex flex-col md:flex-row gap-8 bg-primary-900 px-8 py-12 border border-tertiary-600 rounded-[32px] md:rounded-[64px] w-full max-w-full md:max-w-6xl md:mx-16 shadow-2xl"
 		>
 			<!-- Text Section -->
 			<div class="flex flex-col text-left w-full md:w-1/2">
@@ -38,7 +38,7 @@
 					id="testimonial-heading"
 					class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-center md:text-left"
 				>
-					What our <span class="text-secondary-600">customers</span> say about us
+					What our <span class="text-secondary-600">customers <br /></span> say about us
 				</h2>
 				<p class="text-lg md:text-2xl font-normal text-center md:text-left">
 					With over 500,000 successful projects, we help businesses—big and small—enhance their

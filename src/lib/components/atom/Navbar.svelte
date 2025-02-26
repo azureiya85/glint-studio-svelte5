@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-	import { faPalette, faBars } from '@fortawesome/free-solid-svg-icons';
+	import Icon from '@iconify/svelte';
 	import MobileMenu from './MobileMenu.svelte';
 	import { authStore } from '$lib/stores/auth';
 
@@ -40,7 +39,7 @@
 	class:bg-opacity-80={scrolled}
 >
 	<div class="flex items-center gap-3">
-		<FontAwesomeIcon icon={faPalette} class="text-secondary-500 text-2xl" />
+		<Icon icon="mdi:palette" class="text-secondary-500 text-2xl" />
 		<span class="text-white text-xl font-semibold tracking-wide">designer</span>
 	</div>
 
@@ -55,7 +54,7 @@
 			<span class="nav-link">Hello, {$authStore?.username}</span>
 			<button
 				onclick={handleLogout}
-				class="px-6 py-2 mr-5 bg-primary-800 border border-tertiary-900 hover:bg-primary-700 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
+				class="px-6 py-2 mr-5 bg-primary-800 border border-tertiary-900 hover:bg-secondary-700 text-white rounded-3xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1"
 			>
 				Sign Out
 			</button>
@@ -72,7 +71,7 @@
 	</nav>
 
 	<button class="md:hidden text-white text-2xl" onclick={toggleMobileMenu}>
-		<FontAwesomeIcon icon={faBars} />
+		<Icon icon="mdi:menu" />
 	</button>
 
 	{#if mobileMenuOpen}
