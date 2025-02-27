@@ -40,6 +40,61 @@
 		return observer;
 	}
 
+	/**
+	 * Animates a number from 0 to target value
+	 * @param element - The DOM element containing the counter
+	 * @param target - The target number to count to
+	 * @param duration - Animation duration in milliseconds
+	 * @param suffix - Optional suffix to append (e.g., "k+")
+	 */
+	function animateCounter(
+		element: HTMLElement,
+		target: number,
+		duration = 1500,
+		suffix = 'k+'
+	): void {
+		let startTimestamp: number | null = null;
+		const startValue = 0;
+
+		// Handle animation frame
+		const step = (timestamp: number) => {
+			if (!startTimestamp) startTimestamp = timestamp;
+			const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+			const currentValue = Math.floor(progress * (target - startValue) + startValue);
+
+			element.textContent = `${currentValue}${suffix}`;
+
+			if (progress < 1) {
+				window.requestAnimationFrame(step);
+			} else {
+				element.textContent = `${target}${suffix}`;
+			}
+		};
+
+		window.requestAnimationFrame(step);
+	}
+
+	/**
+	 * Initializes all counter animations in the stats section
+	 */
+	function initCounters(): void {
+		if (!statsVisible) return;
+
+		// Find all elements with counter class
+		const counterElements = document.querySelectorAll('.counter');
+
+		// Animate each counter with appropriate delays
+		counterElements.forEach((element, index) => {
+			const target = parseInt(element.getAttribute('data-target') || '0', 10);
+			const suffix = element.getAttribute('data-suffix') || 'k+';
+
+			// Stagger the counter animations
+			setTimeout(() => {
+				animateCounter(element as HTMLElement, target, 1500, suffix);
+			}, index * 300); // 300ms delay between each counter starting
+		});
+	}
+
 	onMount(() => {
 		// Fetch testimonial data
 		fetchTestimonials(6);
@@ -77,6 +132,12 @@
 					statsSection,
 					(visible) => {
 						statsVisible = visible;
+
+						// Initialize counters after stats section becomes visible
+						// with a small delay to ensure animations are visible
+						if (visible) {
+							setTimeout(initCounters, 300);
+						}
 					},
 					0.1
 				)
@@ -162,7 +223,7 @@
 			</div>
 		</div>
 
-		<!-- Stats Section with Sequential Animation -->
+		<!-- Stats Section with Sequential Animation and Counters -->
 		<div
 			bind:this={statsSection}
 			class="relative z-10 w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-12 text-center mt-12 md:mt-16 px-4 md:px-0"
@@ -172,7 +233,7 @@
 				class:visible={statsVisible}
 				style="transition-delay: 0ms;"
 			>
-				<p class="text-3xl md:text-5xl font-bold counter" data-target="500">500k+</p>
+				<p class="text-3xl md:text-5xl font-bold counter" data-target="500" data-suffix="k+">0</p>
 				<p class="text-base md:text-lg font-medium">PROJECTS</p>
 			</div>
 			<div
@@ -180,7 +241,7 @@
 				class:visible={statsVisible}
 				style="transition-delay: 300ms;"
 			>
-				<p class="text-3xl md:text-5xl font-bold counter" data-target="100">100k+</p>
+				<p class="text-3xl md:text-5xl font-bold counter" data-target="100" data-suffix="k+">0</p>
 				<p class="text-base md:text-lg font-medium">CLIENTS</p>
 			</div>
 			<div
@@ -188,7 +249,7 @@
 				class:visible={statsVisible}
 				style="transition-delay: 600ms;"
 			>
-				<p class="text-3xl md:text-5xl font-bold counter" data-target="70">70+</p>
+				<p class="text-3xl md:text-5xl font-bold counter" data-target="70" data-suffix="+">0</p>
 				<p class="text-base md:text-lg font-medium">COUNTRIES</p>
 			</div>
 		</div>

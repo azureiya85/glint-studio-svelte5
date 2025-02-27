@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { serviceDescriptions } from '$lib/components/nerve/ServiceDesc';
 	import { onMount } from 'svelte';
+	import Icon from '@iconify/svelte';
 
 	let headingVisible = false;
 	let servicesVisible = false;
@@ -74,6 +75,20 @@
 					<p class="text-primary-100 text-sm md:text-base">{service.description}</p>
 				</div>
 			{/each}
+		</div>
+		<!-- Find Out More Button -->
+		<div class="mt-12 md:mt-16 flex justify-center md:justify-end">
+			<a
+				href="/services"
+				class="flex items-center gap-2 text-lg font-semibold text-white bg-secondary-600 px-6 py-3 border border-tertiary-600 rounded-full shadow-md hover:shadow-2xl hover:bg-secondary-500 transition mx-8 mt-4"
+			>
+				Explore Our Services
+				<Icon
+					icon="ic:baseline-keyboard-double-arrow-right"
+					class="text-primary-100 w-5 h-5"
+					aria-hidden="true"
+				/>
+			</a>
 		</div>
 	</div>
 </section>
