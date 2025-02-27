@@ -31,18 +31,15 @@ export const POST: RequestHandler = async ({ request, fetch }) => {
 		const APP_ID = '97A8EFE3-6D77-492C-8376-2D3072C9B4B7'; // Replace with your Backendless App ID
 		const API_KEY = '0A8BD422-473E-4240-85B4-8D51E8E60FE2'; // Replace with your Backendless API Key
 
-		const backendlessResponse = await fetch(
-			`${BACKENDLESS_API_URL}/${APP_ID}/${API_KEY}/users/register`, // Ensure this is the correct API path
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'application-id': APP_ID,
-					'secret-key': API_KEY
-				},
-				body: JSON.stringify({ email, username, password })
-			}
-		);
+		const backendlessResponse = await fetch(`${BACKENDLESS_API_URL}/${APP_ID}/users/register`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'application-id': APP_ID,
+				'secret-key': API_KEY
+			},
+			body: JSON.stringify({ email, username, password })
+		});
 
 		// Log full response details
 		console.log('Backendless response:', {
