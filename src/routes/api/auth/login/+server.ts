@@ -10,7 +10,7 @@ export const POST: RequestHandler = async ({ request, cookies, fetch }) => {
 		const API_KEY = '0A8BD422-473E-4240-85B4-8D51E8E60FE2'; // Replace with your Backendless API Key
 
 		const backendlessResponse = await fetch(
-			`https://api.backendless.com/97A8EFE3-6D77-492C-8376-2D3072C9B4B7/0A8BD422-473E-4240-85B4-8D51E8E60FE2/data/Users`,
+			`https://api.backendless.com/97A8EFE3-6D77-492C-8376-2D3072C9B4B7/0A8BD422-473E-4240-85B4-8D51E8E60FE2/users/login`,
 			{
 				method: 'POST',
 				headers: {
@@ -20,69 +20,62 @@ export const POST: RequestHandler = async ({ request, cookies, fetch }) => {
 				},
 				body: JSON.stringify({
 					login: username, // Backendless uses 'login' for username/email
-					password: password
+					password: password,
+					email: username
 				})
 			}
 		);
 
 		// If Backendless login succeeds, use that
+
 		if (backendlessResponse.ok) {
 			const userData = await backendlessResponse.json();
 
-			// Create a user object with relevant info
 			const user = {
 				username: userData.username || username,
 				email: userData.email,
 				objectId: userData.objectId
 			};
 
-			// Set auth cookie
 			cookies.set('auth', JSON.stringify(user), {
 				path: '/',
-				httpOnly: false, // For simplicity
-				secure: false, // For simplicity
+				httpOnly: true,
+				secure: true,
 				maxAge: 60 * 60 * 24 * 7, // 7 days
 				sameSite: 'lax'
 			});
 
-			return json({
-				success: true,
-				message: 'Login successful!',
-				user
-			});
+			return json({ success: true, message: 'Login successful!', user });
+		} else {
+			const errorResponse = await backendlessResponse.text();
+			console.error('Backendless auth failed:', backendlessResponse.status, errorResponse);
 		}
 
-		// If Backendless fails but it's our test user, allow login
-		const validUser = {
-			username: 'admin', // Changed to 'admin' as requested
-			password: 'handless'
-		};
-
+		// Test user fallback
+		const validUser = { username: 'admin', password: 'handless' };
 		if (username === validUser.username && password === validUser.password) {
-			// Create a user object
 			const user = { username };
 
-			// Set auth cookie
 			cookies.set('auth', JSON.stringify(user), {
 				path: '/',
-				httpOnly: false,
-				secure: false,
-				maxAge: 60 * 60 * 24 * 7, // 7 days
+				httpOnly: true,
+				secure: true,
+				maxAge: 60 * 60 * 24 * 7,
 				sameSite: 'lax'
 			});
 
-			return json({
-				success: true,
-				message: 'Login successful!',
-				user
-			});
+			return json({ success: true, message: 'Login successful!', user });
 		}
 
-		// If all authentication methods fail
-		return json({ success: false, message: 'Invalid credentials' }, { status: 401 });
+		return json(
+			{ success: false, message: 'Invalid credentials. Please check your username and password.' },
+			{ status: 401 }
+		);
 	} catch (error) {
 		console.error('Login error:', error);
-
-		return json({ success: false, message: 'Server error during login' }, { status: 500 });
+		return json(
+			{ success: false, message: 'Server error during login. Please try again later.' },
+			{ status: 500 }
+		);
 	}
 };

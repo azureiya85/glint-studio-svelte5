@@ -36,7 +36,7 @@ function createAuthStore() {
 					set(result.user);
 					return { success: true };
 				} else {
-					return { success: false, message: result.message };
+					return { success: false, message: result.message || 'Login failed. Please try again.' };
 				}
 			} catch (error) {
 				console.error('Login error:', error);

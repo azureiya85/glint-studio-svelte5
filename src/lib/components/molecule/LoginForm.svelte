@@ -8,16 +8,12 @@
 	let username = $state('');
 	let password = $state('');
 	let isLoading = $state(false);
+	let errorMessage = $state('');
 
 	// Get toast store for notifications
 	const toastStore = getToastStore();
 
 	// Toast notifications
-	const loginFail: ToastSettings = {
-		message: 'Login failed. Please try again.',
-		background: 'variant-filled-error'
-	};
-
 	const loginSuccess: ToastSettings = {
 		message: 'Login successful!',
 		background: 'bg-success-700'
@@ -27,6 +23,7 @@
 	async function handleLogin(event: Event) {
 		event.preventDefault();
 		isLoading = true;
+		errorMessage = '';
 
 		const result = await authStore.login(username, password);
 
@@ -36,6 +33,11 @@
 			toastStore.trigger(loginSuccess);
 			goto('/');
 		} else {
+			errorMessage = result.message || 'Login failed. Please try again.';
+			const loginFail: ToastSettings = {
+				message: errorMessage,
+				background: 'variant-filled-error'
+			};
 			toastStore.trigger(loginFail);
 		}
 	}
@@ -69,6 +71,10 @@
 			required
 		/>
 	</label>
+
+	{#if errorMessage}
+		<div class="text-red-400 text-sm">{errorMessage}</div>
+	{/if}
 
 	<button
 		type="submit"
