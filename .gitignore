@@ -19,3 +19,9 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Ignore font files
+static/fonts/*.woff
+static/fonts/*.woff2
+static/fonts/*.ttf
+static/fonts/*.otf
