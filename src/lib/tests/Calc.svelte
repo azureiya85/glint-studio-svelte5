@@ -1,18 +1,20 @@
 <script>
 	let numberInput = $state('');
-	let total = $state('');
 
-	function calculate() {
+	// Compute the total reactively using $derived.by
+	let total = $derived.by(() => {
 		try {
-			if (numberInput.trim() !== '') {
-				total = eval(numberInput); // Be cautious with eval in real applications
-			} else {
-				total = '';
+			// Allow only valid numbers and operators
+			if (!/^[0-9+\-*/().\s]+$/.test(numberInput.trim())) {
+				return 'Invalid input';
 			}
-		} catch (e) {
-			total = 'Error';
+			// Use Function constructor instead of eval() (safer)
+			let result = new Function(`return (${numberInput})`)();
+			return isNaN(result) ? 'Error' : result;
+		} catch {
+			return 'Error';
 		}
-	}
+	});
 </script>
 
 <div class="justify-center text-center mb-4">
@@ -21,12 +23,7 @@
 </div>
 
 <section class="calculator">
-	<input
-		type="text"
-		bind:value={numberInput}
-		oninput={calculate}
-		placeholder="Enter equation..."
-	/>
+	<input type="text" bind:value={numberInput} placeholder="Enter equation..." />
 	<div class="result">{total}</div>
 </section>
 

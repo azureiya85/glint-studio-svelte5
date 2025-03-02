@@ -1,25 +1,16 @@
 <script>
-	let lottery = $state(0);
-	let prize = $state('');
+	let lottery = $state(Math.floor(Math.random() * 100));
+
+	let prize = $derived.by(() => {
+		if (lottery <= 10) return 'Shirt';
+		if (lottery <= 30) return 'Shoes';
+		if (lottery <= 50) return 'Bag';
+		if (lottery <= 70) return 'Car';
+		return 'House';
+	});
 
 	function drawLottery() {
-		const random = Math.floor(Math.random() * 100);
-		let reward = 'No prize this time';
-
-		if (random <= 10) {
-			reward = 'Shirt';
-		} else if (random <= 30) {
-			reward = 'Shoes';
-		} else if (random <= 50) {
-			reward = 'Bag';
-		} else if (random <= 70) {
-			reward = 'Car';
-		} else {
-			reward = 'House';
-		}
-
-		lottery = random;
-		prize = reward;
+		lottery = Math.floor(Math.random() * 100);
 	}
 </script>
 

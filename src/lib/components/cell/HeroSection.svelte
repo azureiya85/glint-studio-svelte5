@@ -44,12 +44,12 @@
 	></div>
 
 	{#if visible}
-		<div class="relative text-white max-w-2xl" in:fade={{ duration: 800 }}>
-			<h1 id="hero-title" class="text-4xl sm:text-5xl font-heading-token font-bold">
+		<div class="relative text-white max-w-3xl" in:fade={{ duration: 800 }}>
+			<h1 id="hero-title" class="text-4xl sm:text-7xl font-heading-token font-bold">
 				<span class="text-primary-50">build a better web</span><br />
 				<span class="text-secondary-500">build a better future</span>
 			</h1>
-			<p class="mt-4 text-lg sm:text-xl leading-relaxed" in:fly={{ ...flyAnimation, delay: 200 }}>
+			<p class="mt-4 text-lg sm:text-3xl leading-relaxed" in:fly={{ ...flyAnimation, delay: 200 }}>
 				We help people to create a more responsive, adaptive, and accessible web experience.
 			</p>
 			<!-- CTA Buttons -->
@@ -88,11 +88,11 @@
 
 <style>
 	.cta-button {
-		@apply bg-primary-800 flex border-[1px] border-tertiary-900 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-all transform hover:-translate-y-1 hover:bg-primary-700 shadow-md hover:shadow-lg;
+		@apply text-2xl bg-primary-800 flex border-[1px] border-tertiary-900 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-all transform hover:-translate-y-1 hover:bg-primary-700 shadow-md hover:shadow-lg;
 	}
 
 	.cta-button-main {
-		@apply bg-secondary-700 flex border-[1px] border-tertiary-500 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-all transform hover:-translate-y-1 hover:bg-secondary-600 shadow-md hover:shadow-lg;
+		@apply text-2xl font-semibold bg-secondary-700 flex border-[1px] border-tertiary-500 items-center gap-2 px-6 py-3 text-white rounded-3xl transition-all transform hover:-translate-y-1 hover:bg-secondary-600 shadow-md hover:shadow-lg;
 	}
 
 	.cta-tertiary {

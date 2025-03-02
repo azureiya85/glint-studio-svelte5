@@ -110,7 +110,7 @@
 			>
 				Main Heading
 			</h1>
-			<p class="text-base md:text-lg text-white mt-4 max-w-2xl">
+			<p class="text-base md:text-xl text-white mt-4 max-w-2xl">
 				This is a descriptive paragraph for the main heading.
 			</p>
 		</div>
@@ -131,7 +131,7 @@
 					<h2 class="text-primary-100 text-2xl md:text-3xl font-bold mb-2 md:mb-4">
 						{service.heading}
 					</h2>
-					<p class="text-primary-100 text-sm md:text-base flex-grow">{service.description}</p>
+					<p class="text-primary-100 text-xl md:text-base flex-grow">{service.description}</p>
 					<div class="mt-4 flex justify-end">
 						<!-- <a -->
 						<!-- 	href={`/services/${service.slug || ''}`} -->

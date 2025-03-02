@@ -4,9 +4,7 @@
 
 <div class="lamp-container">
 	<p class="font-bold mb-4 text-sm">{isOn ? 'Lights On' : 'Lights Off'}</p>
-	<button class="lamp-btn" class:is-on={isOn} onclick={() => (isOn = !isOn)}>
-		Toggle Light
-	</button>
+	<button class="lamp-btn" class:is-on={isOn} onclick={() => (isOn = !isOn)}> Toggle Light </button>
 </div>
 
 <style>
