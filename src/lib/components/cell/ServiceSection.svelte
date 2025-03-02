@@ -7,11 +7,13 @@
 	let headingVisible = false;
 	let servicesVisible = false;
 	let buttonVisible = false;
+	let iconsVisible = Array($serviceDescriptions.length).fill(false);
 
 	// Element references
 	let headingContainer: HTMLElement | null = null;
 	let servicesContainer: HTMLElement | null = null;
 	let buttonContainer: HTMLElement | null = null;
+	let iconContainers: HTMLElement[] = [];
 
 	/**
 	 * Creates an Intersection Observer to track when elements come into view
@@ -39,6 +41,20 @@
 		);
 		observer.observe(node);
 		return observer;
+	}
+
+	// Map service catchphrases to appropriate Iconify icons
+	function getServiceIcon(catchphrase: string): string {
+		switch (catchphrase) {
+			case 'Build & Integrate':
+				return 'mdi:rocket-launch-outline';
+			case 'Collaborate & Share':
+				return 'mdi:account-group-outline';
+			case 'Optimize & Scale':
+				return 'mdi:chart-line';
+			default:
+				return 'mdi:check-circle-outline';
+		}
 	}
 
 	onMount(() => {
@@ -86,6 +102,28 @@
 			);
 		}
 
+		// Observe each icon container
+		iconContainers.forEach((container, index) => {
+			if (container) {
+				observers.push(
+					createVisibilityObserver(
+						container,
+						(visible) => {
+							// Show icons after description has appeared
+							setTimeout(
+								() => {
+									iconsVisible[index] = visible;
+									iconsVisible = [...iconsVisible]; // Force reactivity update
+								},
+								600 + index * 100
+							); // Staggered delay for icons
+						},
+						0.1
+					)
+				);
+			}
+		});
+
 		// Clean up observers on component destruction
 		return () => {
 			observers.forEach((observer) => observer.disconnect());
@@ -101,17 +139,20 @@
 		<!-- Heading Container (Fly In) -->
 		<div
 			bind:this={headingContainer}
-			class="flex flex-col justify-center items-center text-center mb-12 md:mb-16 opacity-0 translate-y-10 transition-all duration-700 ease-out"
+			class="flex flex-col justify-center items-center text-center mt-8 mb-12 md:mb-16 opacity-0 translate-y-10 transition-all duration-700 ease-out"
 			class:visible={headingVisible}
 		>
 			<h1
 				id="service-heading"
-				class="font-heading-token text-4xl md:text-6xl text-secondary-600 font-bold"
+				class="font-heading-token text-4xl md:text-6xl text-primary-50 font-bold"
 			>
-				Main Heading
+				design-driven solutions for the<br /><span class="text-secondary-600">
+					digital future
+				</span>
 			</h1>
-			<p class="text-base md:text-xl text-white mt-4 max-w-2xl">
-				This is a descriptive paragraph for the main heading.
+			<p class="text-xl text-semibold md:text-2xl text-primary-100 mt-8 max-w-2xl">
+				Combine creative design thinking with technical expertise to build faster, more intuitive
+				applications that delight your users and grow with your business.
 			</p>
 		</div>
 
@@ -123,15 +164,37 @@
 		>
 			{#each $serviceDescriptions as service, i}
 				<div
-					class="p-6 md:p-8 shadow-lg rounded-3xl bg-primary-700 border border-tertiary-600 transform transition-all duration-500 hover:-translate-y-2 opacity-0 translate-x-10 h-[400px] flex flex-col"
+					class="p-6 md:p-8 shadow-lg rounded-3xl bg-primary-700 border border-tertiary-600 transform transition-all duration-500 hover:-translate-y-2 opacity-0 translate-x-10 h-[480px] flex flex-col"
 					style="transition-delay: {300 + i * 200}ms;"
 					class:visible={servicesVisible}
 				>
-					<p class="text-sm font-medium text-primary-100 mb-2 md:mb-4">{service.catchphrase}</p>
-					<h2 class="text-primary-100 text-2xl md:text-3xl font-bold mb-2 md:mb-4">
+					<p
+						class="pl-2 bg-secondary-700 rounded-full text-sm font-semibold text-primary-100 mb-2 md:mb-4"
+					>
+						{service.catchphrase}
+					</p>
+					<h2 class="pl-1 text-primary-100 text-2xl md:text-3xl font-bold mb-2 md:mb-4">
 						{service.heading}
 					</h2>
-					<p class="text-primary-100 text-xl md:text-base flex-grow">{service.description}</p>
+					<p class="pl-1 text-primary-100 text-xl md:text-base flex-grow">{service.description}</p>
+
+					<!-- Separator line -->
+					<div class="w-full h-px bg-tertiary-600 my-4 opacity-70"></div>
+
+					<!-- Icon container with separate animation -->
+					<div
+						bind:this={iconContainers[i]}
+						class="flex justify-center items-center mt-2 opacity-0 translate-y-10 transition-all duration-500"
+						class:visible={iconsVisible[i]}
+						style="transition-delay: {600 + i * 100}ms;"
+					>
+						<Icon
+							icon={getServiceIcon(service.catchphrase)}
+							class="text-secondary-500 w-10 h-10"
+							aria-hidden="true"
+						/>
+					</div>
+
 					<div class="mt-4 flex justify-end">
 						<!-- <a -->
 						<!-- 	href={`/services/${service.slug || ''}`} -->

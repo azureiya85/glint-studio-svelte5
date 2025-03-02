@@ -176,7 +176,9 @@
 					class="font-heading-token text-4xl md:text-6xl font-bold mb-6 leading-tight text-center md:text-left opacity-0 translate-y-10 transition-all duration-700 ease-out"
 					class:visible={textVisible}
 				>
-					What our <span class="text-secondary-600">customers <br /></span> say about us
+					<span class="text-primary-50"> what our </span>
+					<span class="text-secondary-600">customers <br /></span>
+					<span class="text-primary-50"> say about us </span>
 				</h2>
 				<p
 					class="text-lg md:text-2xl font-normal text-center md:text-left opacity-0 translate-y-10 transition-all duration-700 ease-out delay-200"

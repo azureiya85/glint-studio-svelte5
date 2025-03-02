@@ -39,8 +39,10 @@
 	class:bg-opacity-80={scrolled}
 >
 	<div class="flex items-center gap-3">
-		<Icon icon="mdi:palette" class="text-secondary-500 text-2xl" />
-		<span class="text-white text-xl font-semibold tracking-wide">designer</span>
+		<a href="/" class="flex items-center gap-2">
+			<Icon icon="mdi:palette" class="text-secondary-500 text-2xl" />
+			<span class="text-white text-xl font-semibold tracking-wide">designer</span>
+		</a>
 	</div>
 
 	<nav class="hidden md:flex items-center gap-6">
