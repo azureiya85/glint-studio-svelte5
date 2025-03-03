@@ -278,6 +278,15 @@
 					</article>
 				{/each}
 			</div>
+			<div class="text-center mt-12">
+				<a
+					href="/team/details"
+					class="inline-flex items-center gap-2 text-lg font-semibold text-white bg-secondary-600 px-6 py-3 border border-tertiary-600 rounded-full shadow-md hover:shadow-2xl hover:bg-secondary-500 transition-all"
+				>
+					<Icon icon="mdi:account-group" class="text-primary-100 w-5 h-5" aria-hidden="true" />
+					Learn More About Our Team!
+				</a>
+			</div>
 		</section>
 	</div>
 </section>
@@ -299,7 +308,7 @@
 			transform 0.5s ease-out;
 	}
 
-	.visible header,
+	/* .visible header, */
 	.visible article,
 	.visible h2,
 	.visible p {

@@ -6,8 +6,8 @@
 </script>
 
 <svelte:head>
-	<title>Login | Designer</title>
-	<meta name="description" content="Sign in to Designer to access exclusive features." />
+	<title>Login | glint studio</title>
+	<meta name="description" content="Sign in to glint studio to access exclusive features." />
 </svelte:head>
 
 <div class="flex flex-col min-h-screen">

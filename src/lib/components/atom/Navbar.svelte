@@ -41,7 +41,7 @@
 	<div class="flex items-center gap-3">
 		<a href="/" class="flex items-center gap-2">
 			<Icon icon="mdi:palette" class="text-secondary-500 text-2xl" />
-			<span class="text-white text-xl font-semibold tracking-wide">designer</span>
+			<span class="text-white text-xl font-semibold tracking-wide">glint</span>
 		</a>
 	</div>
 

@@ -13,6 +13,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Home | glint studio</title>
+	<meta name="description" content="Welcome to glint studio" />
+</svelte:head>
+
 {#if showHero}
 	<HeroSection />
 	<CondensedOverview />

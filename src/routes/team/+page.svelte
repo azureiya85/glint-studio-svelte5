@@ -8,6 +8,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Company Profile | glint studio</title>
+	<meta name="description" content="Take a glimpse of the history of glint" />
+</svelte:head>
+
 {#if showHero}
 	<CompanyOverview />
 {/if}
