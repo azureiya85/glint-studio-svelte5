@@ -217,6 +217,11 @@
 					>
 						Monthly
 					</button>
+					<div
+						class="absolute top-1 left-1 w-1/2 h-8 bg-secondary-600 rounded-full transition-all duration-300"
+						style:transform={billingCycle === 'yearly' ? 'translateX(100%)' : 'translateX(0)'}
+						aria-hidden="true"
+					></div>
 					<button
 						class="relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
 						class:active={billingCycle === 'yearly'}
@@ -230,11 +235,6 @@
 							Save 15-20%
 						</span>
 					</button>
-					<div
-						class="absolute top-1 left-1 w-1/2 h-8 bg-secondary-600 rounded-full transition-all duration-300"
-						style:transform={billingCycle === 'yearly' ? 'translateX(100%)' : 'translateX(0)'}
-						aria-hidden="true"
-					></div>
 				</div>
 			</div>
 		</div>
@@ -272,17 +272,17 @@
 									aria-hidden="true"
 								/>
 							</div>
-							<p class="ml-4 text-sm font-semibold text-secondary-600 mb-2">
+							<p class="text-sm font-semibold text-secondary-600 mb-2">
 								{service.catchphrase}
 							</p>
-							<h3 class="px-4 text-2xl md:text-3xl font-bold mb-4 text-primary-50">
+							<h3 class="text-2xl md:text-3xl font-bold mb-4 text-primary-50">
 								{service.heading}
 							</h3>
-							<p class="px-4 text-primary-200 mb-6">
+							<p class=" text-primary-200 mb-6">
 								{service.description}
 							</p>
 							<div class="mb-8">
-								<p class="px-4 text-4xl font-bold mb-1">
+								<p class=" text-4xl font-bold mb-1">
 									{formatCurrency(
 										billingCycle === 'monthly' ? service.pricing.monthly : service.pricing.yearly
 									)}
@@ -291,7 +291,7 @@
 									</span>
 								</p>
 								{#if billingCycle === 'yearly'}
-									<p class="px-4 text-sm text-primary-300">
+									<p class="text-sm text-primary-300">
 										({calculateMonthlyEquivalent(service.pricing.yearly)}/mo equivalent · Save {calculateSavings(
 											service.pricing.monthly,
 											service.pricing.yearly
@@ -299,7 +299,7 @@
 									</p>
 								{/if}
 							</div>
-							<ul class="px-4 space-y-3 mb-8">
+							<ul class="space-y-3 mb-8">
 								{#each service.pricing.features as feature}
 									<li class="flex items-start">
 										<Icon
@@ -314,7 +314,7 @@
 						<div class="p-6 border-t border-tertiary-600">
 							<a
 								href="/contact?service={encodeURIComponent(service.heading)}"
-								class="block rounded-full w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 text-white font-medium rounded-xl text-center transition-colors duration-300"
+								class="block rounded-full w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 text-white font-medium text-center transition-colors duration-300"
 							>
 								Get Started
 							</a>
@@ -357,15 +357,15 @@
 							>
 								Save {pkg.savings}
 							</span>
-							<h3 class="px-4 text-2xl font-bold mb-3 text-primary-50">
+							<h3 class="text-2xl font-bold mb-3 text-primary-50">
 								{pkg.title}
 							</h3>
-							<p class="px-4 text-primary-200 mb-4">
+							<p class=" text-primary-200 mb-4">
 								{pkg.description}
 							</p>
 							<div class="mb-4">
-								<p class="px-4 text-lg font-medium text-primary-100">Includes:</p>
-								<ul class="px-4 mb-4">
+								<p class=" text-lg font-medium text-primary-100">Includes:</p>
+								<ul class="mb-4">
 									{#each pkg.services as service}
 										<li class="flex items-center py-1">
 											<Icon
@@ -378,21 +378,21 @@
 								</ul>
 							</div>
 							<div class="mb-6">
-								<p class="px-4 text-4xl font-bold mb-1">
+								<p class="text-4xl font-bold mb-1">
 									{formatCurrency(billingCycle === 'monthly' ? pkg.monthlyPrice : pkg.yearlyPrice)}
 									<span class="text-sm font-normal text-primary-300">
 										{billingCycle === 'monthly' ? '/month' : '/year'}
 									</span>
 								</p>
 								{#if billingCycle === 'yearly'}
-									<p class="px-4 text-sm text-primary-300">
+									<p class=" text-sm text-primary-300">
 										({calculateMonthlyEquivalent(pkg.yearlyPrice)}/mo equivalent)
 									</p>
 								{/if}
 							</div>
 							<div class="mb-6">
-								<p class="px-4 text-lg font-medium text-primary-100">Additional benefits:</p>
-								<ul class="px-4 space-y-2">
+								<p class="text-lg font-medium text-primary-100">Additional benefits:</p>
+								<ul class=" space-y-2">
 									{#each pkg.features as feature}
 										<li class="flex items-start">
 											<Icon
@@ -408,7 +408,7 @@
 						<div class="p-6 border-t border-tertiary-600">
 							<a
 								href="/contact?package={encodeURIComponent(pkg.title)}"
-								class="rounded-full block w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 text-white font-medium rounded-xl text-center transition-colors duration-300"
+								class="rounded-full block w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 text-white font-medium text-center transition-colors duration-300"
 							>
 								Choose This Package
 							</a>
