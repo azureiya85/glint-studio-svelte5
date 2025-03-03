@@ -163,8 +163,8 @@
 				href="/team"
 				class="inline-flex items-center gap-2 text-lg font-semibold text-white bg-secondary-600 px-6 py-3 border border-tertiary-600 rounded-full shadow-md hover:shadow-2xl hover:bg-secondary-500 transition-all"
 			>
-				Learn More About Us!
 				<Icon icon="mdi:account-group" class="text-primary-100 w-5 h-5" aria-hidden="true" />
+				Learn More About Us!
 			</a>
 		</div>
 	</div>

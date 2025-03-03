@@ -1,43 +1,43 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
-	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
-
 	import Navbar from '$lib/components/atom/Navbar.svelte';
 
-	let visible = false;
-	let section: HTMLElement;
-	let observer: IntersectionObserver;
+	// Reactive state using runes
+	let visible = $state(false);
 
+	// Element reference
+	let section: HTMLElement | undefined;
+
+	// Animation configuration
 	const flyAnimation = { y: 20, duration: 1000 };
 
-	onMount(() => {
-		if (section) {
-			observer = new IntersectionObserver(
-				([entry]) => {
-					if (entry.isIntersecting) {
-						visible = true;
-						observer.disconnect();
-					}
-				},
-				{ threshold: 0.3 }
-			);
-			observer.observe(section);
-		}
+	// Setup intersection observer with $effect
+	$effect(() => {
+		if (!section) return;
 
-		return () => {
-			// Cleanup observer if component is destroyed
-			if (observer) observer.disconnect();
-		};
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					visible = true;
+					observer.disconnect();
+				}
+			},
+			{ threshold: 0.3 }
+		);
+		observer.observe(section);
+
+		// Cleanup
+		return () => observer.disconnect();
 	});
 </script>
 
 <Navbar />
 
 <section
-	bind:this={section}
 	aria-labelledby="hero-title"
 	class="relative w-full h-screen min-h-[600px] flex flex-col items-center justify-center px-6 text-center"
+	bind:this={section}
 >
 	<div
 		class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/image/background_hero_4x.png')] bg-cover bg-center"
@@ -52,7 +52,6 @@
 			<p class="mt-4 text-lg sm:text-3xl leading-relaxed" in:fly={{ ...flyAnimation, delay: 200 }}>
 				We help people to create a more responsive, adaptive, and accessible web experience.
 			</p>
-			<!-- CTA Buttons -->
 			<div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
 				<a
 					href="/about"
