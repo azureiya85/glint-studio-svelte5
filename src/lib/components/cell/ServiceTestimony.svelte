@@ -8,6 +8,8 @@
 		fetchEnhancedTestimonials
 	} from '$lib/components/nerve/EnhancedTestimonialData';
 	import Icon from '@iconify/svelte';
+	import { cart, showPopup } from '$lib/stores/cart';
+	import type { Service, Package } from '$lib/stores/types';
 
 	// Billing cycle state
 	let billingCycle = $state('monthly');
@@ -160,6 +162,28 @@
 		// Cleanup
 		return () => observers.forEach((obs) => obs.disconnect());
 	});
+
+	function addToCart(service: Service | Package, isPackage: boolean = false) {
+		const price =
+			billingCycle === 'monthly'
+				? isPackage
+					? (service as Package).monthlyPrice
+					: (service as Service).pricing.monthly
+				: isPackage
+					? (service as Package).yearlyPrice
+					: (service as Service).pricing.yearly;
+
+		const item = {
+			id: `${'heading' in service ? service.heading : service.title}-${billingCycle}`,
+			name: 'heading' in service ? service.heading : service.title,
+			price,
+			isMonthly: billingCycle === 'monthly',
+			icon: isPackage ? 'mdi:package-variant' : getServiceIcon((service as Service).catchphrase)
+		};
+
+		$cart = [...$cart, item];
+		$showPopup = true;
+	}
 </script>
 
 <svelte:head>
@@ -196,8 +220,8 @@
 			class:visible={pageHeaderVisible}
 		>
 			<h1 class="font-heading-token text-4xl md:text-7xl font-bold text-center mb-6">
-				<span class="text-primary-50">Design Solutions for <br /></span>
-				<span class="text-secondary-600 block md:inline"> Digital Success</span>
+				<span class="text-primary-50">design solutions for <br /></span>
+				<span class="text-secondary-600 block md:inline"> digital success</span>
 			</h1>
 
 			<p class="text-xl md:text-2xl text-center max-w-3xl mx-auto mb-12">
@@ -311,13 +335,13 @@
 								{/each}
 							</ul>
 						</div>
-						<div class="p-6 border-t border-tertiary-600">
-							<a
-								href="/contact?service={encodeURIComponent(service.heading)}"
-								class="block rounded-full w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 text-white font-medium text-center transition-colors duration-300"
+						<div class="text-white p-6 border-t border-tertiary-600">
+							<button
+								onclick={() => addToCart(service)}
+								class="get-started-btn block rounded-full w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 font-medium text-center transition-colors duration-300"
 							>
 								Get Started
-							</a>
+							</button>
 						</div>
 					</div>
 				{/each}
@@ -406,12 +430,12 @@
 							</div>
 						</div>
 						<div class="p-6 border-t border-tertiary-600">
-							<a
-								href="/contact?package={encodeURIComponent(pkg.title)}"
-								class="rounded-full block w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 text-white font-medium text-center transition-colors duration-300"
+							<button
+								onclick={() => addToCart(pkg, true)}
+								class="get-started-btn rounded-full block w-full py-3 px-4 bg-secondary-600 hover:bg-secondary-500 text-white font-medium text-center transition-colors duration-300"
 							>
 								Choose This Package
-							</a>
+							</button>
 						</div>
 					</div>
 				{/each}
@@ -470,6 +494,7 @@
 						<div class="mb-3">
 							<div class="flex mb-1">
 								{#each Array(5) as _, star}
+									{void _}
 									<Icon
 										icon={star < testimonial.rating ? 'mdi:star' : 'mdi:star-outline'}
 										class="w-5 h-5 text-secondary-500"
@@ -507,8 +532,9 @@
 				<div class="flex flex-col sm:flex-row gap-4 justify-center">
 					<a
 						href="/contact"
-						class="rounded-full mb-4 py-3 px-8 bg-secondary-600 hover:bg-secondary-500 text-white font-medium text-center transition-colors duration-300"
+						class="rounded-full mb-4 py-3 px-8 bg-secondary-600 hover:bg-secondary-500 text-white font-medium text-center transition-colors duration-300 flex items-center gap-4"
 					>
+						<Icon icon="mdi:comment-bookmark" class="text-primary-100 w-5 h-5" aria-hidden="true" />
 						Book Free Consultation
 					</a>
 				</div>
@@ -533,6 +559,13 @@
 	}
 
 	button:not(.active) {
-		color: theme('colors.primary.300');
+		color: theme('colors.primary.200');
+	}
+
+	.get-started-btn {
+		color: white;
+	}
+	.get-started-btn:hover {
+		color: white;
 	}
 </style>

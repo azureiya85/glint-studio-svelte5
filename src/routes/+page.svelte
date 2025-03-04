@@ -5,6 +5,7 @@
 	import TestimonialList from '$lib/components/cell/TestimonialList.svelte';
 	import ServiceSection from '$lib/components/cell/ServiceSection.svelte';
 	import CondensedOverview from '$lib/components/cell/CondensedOverview.svelte';
+	import FooterMain from '$lib/components/atom/FooterMain.svelte';
 
 	let showHero = $state(false);
 
@@ -23,4 +24,5 @@
 	<CondensedOverview />
 	<ServiceSection />
 	<TestimonialList />
+	<FooterMain />
 {/if}
