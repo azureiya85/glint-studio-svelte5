@@ -282,7 +282,7 @@
 			>
 				{#each $enhancedServiceDescriptions as service, i (service.heading)}
 					<div
-						class="relative flex flex-col rounded-3xl border border-tertiary-600 bg-primary-800 overflow-hidden transition-all duration-500 opacity-0 translate-y-10"
+						class="relative flex flex-col rounded-3xl shadow-2xl border border-tertiary-600 bg-primary-700 overflow-hidden transition-all duration-500 opacity-0 translate-y-10"
 						style:transition-delay={`${100 + i * 150}ms`}
 						class:visible={servicesVisible}
 					>
@@ -350,7 +350,7 @@
 	</section>
 
 	<!-- Combined Packages Section -->
-	<section aria-labelledby="packages-heading" class="py-16 px-4 md:px-16 bg-primary-800">
+	<section aria-labelledby="packages-heading" class="py-16 px-4 md:px-16 bg-primary-900">
 		<div class="container mx-auto max-w-6xl">
 			<h2
 				id="packages-heading"
@@ -371,7 +371,7 @@
 			>
 				{#each $combinedPackages as pkg, i (pkg.title)}
 					<div
-						class="flex flex-col rounded-3xl border border-tertiary-600 bg-primary-900 overflow-hidden transition-all duration-500 opacity-0 translate-y-10"
+						class="flex flex-col rounded-3xl shadow-2xl border border-tertiary-600 bg-primary-700 overflow-hidden transition-all duration-500 opacity-0 translate-y-10"
 						style:transition-delay={`${100 + i * 150}ms`}
 						class:visible={combinedPackagesVisible}
 					>
@@ -470,7 +470,7 @@
 			>
 				{#each $enhancedTestimonials as testimonial, i (testimonial.id)}
 					<article
-						class="flex flex-col p-6 bg-primary-800 rounded-3xl border border-tertiary-600 transition-all duration-500 hover:border-tertiary-500"
+						class="flex flex-col p-6 bg-primary-800 shadow-2xl rounded-3xl border border-tertiary-600 transition-all duration-500 hover:border-tertiary-500"
 						style:transition-delay={`${100 + i * 100}ms`}
 					>
 						<div class="flex items-center gap-4 mb-4">
@@ -515,7 +515,7 @@
 	</section>
 
 	<!-- CTA Section -->
-	<section aria-labelledby="cta-heading" class="py-16 px-4 md:px-16 bg-primary-800">
+	<section aria-labelledby="cta-heading" class="py-16 px-4 md:px-16 bg-primary-900">
 		<div
 			bind:this={ctaRef}
 			class="container mx-auto max-w-4xl bg-gradient-to-br from-secondary-900 to-primary-900 rounded-3xl p-8 md:p-16 border border-tertiary-600 shadow-xl opacity-0 translate-y-10 transition-all duration-700 ease-out"
